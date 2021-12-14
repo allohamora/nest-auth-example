@@ -1,10 +1,10 @@
 {
   "name": "nest-auth-example",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "version": "0.0.0",
+  "description": "nest auth example",
+  "author": "https://github.com/Allohamora",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -89,5 +89,18 @@
   "lint-staged": {
     "*.ts": "npm run lint -- --fix",
     "*.{js,json,yml,md}": "npm run format -- --write"
-  }
+  },
+  "main": "src/main.ts",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Allohamora/nest-auth-example.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Allohamora/nest-auth-example/issues"
+  },
+  "homepage": "https://github.com/Allohamora/nest-auth-example#readme"
 }
