@@ -29,10 +29,6 @@ export class UserService {
   }
 
   public async findOneByLogin(login: string) {
-    try {
-      return await this.usersRepository.findOneOrFail({ where: { login } });
-    } catch {
-      throw new NotFoundException();
-    }
+    return await this.usersRepository.findOneOrFail({ where: { login } });
   }
 }
