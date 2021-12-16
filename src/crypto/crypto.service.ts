@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { scrypt as scryptCallback, randomBytes } from 'crypto';
 import { promisify } from 'util';
 
-const SALT_LEN = 8;
-const KEY_LEN = 64;
+const SALT_LENGTH = 8;
+const KEY_LENGTH = 64;
 
 const scrypt = promisify(scryptCallback);
 
@@ -14,20 +14,20 @@ export class CryptoService {
   }
 
   private deserializeHash(serializedHash: string) {
-    return serializedHash.split(':');
+    return serializedHash.split(':') as [salt: string, hash: string];
   }
 
-  public async scryptHash(data: string) {
-    const salt = randomBytes(SALT_LEN).toString('hex');
-    const hash = ((await scrypt(data, salt, KEY_LEN)) as Buffer).toString('hex');
-    const serialized = this.serializeHash(hash, salt);
+  public async scryptHash(input: string) {
+    const salt = randomBytes(SALT_LENGTH).toString('hex');
+    const hash = ((await scrypt(input, salt, KEY_LENGTH)) as Buffer).toString('hex');
+    const serializedHash = this.serializeHash(hash, salt);
 
-    return serialized;
+    return serializedHash;
   }
 
-  public async scryptVerify(data: string, hash: string) {
-    const [salt, oldHash] = this.deserializeHash(hash);
-    const newHash = ((await scrypt(data, salt, KEY_LEN)) as Buffer).toString('hex');
+  public async scryptVerify(input: string, hashToCompare: string) {
+    const [salt, oldHash] = this.deserializeHash(hashToCompare);
+    const newHash = ((await scrypt(input, salt, KEY_LENGTH)) as Buffer).toString('hex');
 
     return newHash === oldHash;
   }
