@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CryptoService } from 'src/crypto/crypto.service';
 import { Repository } from 'typeorm';
@@ -29,10 +29,6 @@ export class UserService {
   }
 
   public async findOneByLogin(login: string) {
-    try {
-      return await this.usersRepository.findOneOrFail({ where: { login } });
-    } catch {
-      throw new NotFoundException();
-    }
+    return await this.usersRepository.findOneOrFail({ where: { login } });
   }
 }

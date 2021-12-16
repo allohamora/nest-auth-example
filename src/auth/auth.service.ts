@@ -62,7 +62,7 @@ export class AuthService {
     try {
       await this.jwtService.verifyAsync(refreshToken, { secret: this.JWT_REFRESH_SECRET });
       return await this.sessionRepository.findOneOrFail({ where: { refreshToken, userAgent, ip } });
-    } catch (err) {
+    } catch {
       throw new BadRequestException();
     }
   }
