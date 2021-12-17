@@ -1,4 +1,4 @@
-import { Controller, UseGuards, Post as RestPost, Put, Body, Param, Get, Delete } from '@nestjs/common';
+import { Controller, UseGuards, Post as RestPost, Put, Body, Param, Get, Delete, ParseIntPipe } from '@nestjs/common';
 import { CurrentUser } from 'src/auth/current-user.decorator';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Action } from 'src/casl/action.enum';
@@ -16,14 +16,14 @@ export class PostController {
   constructor(private postService: PostService) {}
 
   @Get(':id')
-  public async get(@Param('id') id: number) {
+  public async get(@Param('id', ParseIntPipe) id: number) {
     return await this.postService.get(id);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard, PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Post))
-  public async delete(@Param('id') id: number, @CurrentAbility() ability: AppAbility) {
+  public async delete(@Param('id', ParseIntPipe) id: number, @CurrentAbility() ability: AppAbility) {
     return await this.postService.delete(id, ability);
   }
 
@@ -39,7 +39,7 @@ export class PostController {
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Post))
   public async update(
     @Body() updatePostDto: CreateUpdatePostDto,
-    @Param('id') id: number,
+    @Param('id', ParseIntPipe) id: number,
     @CurrentAbility() ability: AppAbility,
   ) {
     return await this.postService.update(updatePostDto, id, ability);
