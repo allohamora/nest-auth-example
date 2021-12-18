@@ -48,6 +48,6 @@ export class PostService {
       throw new ForbiddenException();
     }
 
-    return await this.postRepository.delete({ id });
+    await this.postRepository.delete({ id });
   }
 }
