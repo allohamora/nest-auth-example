@@ -98,11 +98,11 @@ export class AuthService {
     return refresAndAccessTokens;
   }
 
-  public async register({ login, password }: RegisterLoginDto): Promise<void> {
-    await this.userService.create({ login, password });
+  public async register({ login, password }: RegisterLoginDto) {
+    return await this.userService.create({ login, password });
   }
 
-  public async login(user: User, userAgent: string, ip: string): Promise<AccessRefreshTokens> {
+  public async login(user: User, userAgent: string, ip: string) {
     const { refreshToken, accessToken } = await this.createAccessAndRefreshTokens(user);
 
     const session = this.sessionRepository.create({

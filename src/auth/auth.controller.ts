@@ -16,12 +16,12 @@ import { JwtAuthGuard } from './jwt-auth.guard';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @Post('login')
   @ApiOkResponse({ type: AccessRefreshTokens })
   @ApiException({ statusCode: HttpStatus.UNAUTHORIZED })
   @ApiBody({ type: RegisterLoginDto })
-  @UseGuards(AuthGuard('local'))
   @HttpCode(200)
-  @Post('login')
+  @UseGuards(AuthGuard('local'))
   public async login(
     @CurrentUser() user: User,
     @UserAgent() userAgent: string,
@@ -30,16 +30,16 @@ export class AuthController {
     return this.authService.login(user, userAgent, ip);
   }
 
-  @ApiException({ statusCode: HttpStatus.BAD_REQUEST })
-  @ApiCreatedResponse({ description: 'user created' })
   @Post('register')
-  public async register(@Body() registerDto: RegisterLoginDto): Promise<void> {
+  @ApiException({ statusCode: HttpStatus.BAD_REQUEST })
+  @ApiCreatedResponse({ type: User })
+  public async register(@Body() registerDto: RegisterLoginDto): Promise<User> {
     return await this.authService.register(registerDto);
   }
 
+  @Post('refresh')
   @ApiException({ statusCode: HttpStatus.BAD_REQUEST })
   @ApiOkResponse({ type: AccessRefreshTokens })
-  @Post('refresh')
   @HttpCode(200)
   public async refresh(
     @Body() refreshDto: RefreshDto,
@@ -49,10 +49,10 @@ export class AuthController {
     return await this.authService.refresh(refreshDto, userAgent, ip);
   }
 
+  @Get('test')
   @ApiOkResponse({ type: User })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
-  @Get('test')
   public async test(@CurrentUser() user: User): Promise<User> {
     return user;
   }

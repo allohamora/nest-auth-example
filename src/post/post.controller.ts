@@ -29,37 +29,37 @@ import { PostService } from './post.service';
 export class PostController {
   constructor(private postService: PostService) {}
 
+  @Get(':id')
   @ApiException({ statusCode: HttpStatus.NOT_FOUND })
   @ApiOkResponse({ type: Post })
-  @Get(':id')
   public async get(@Param('id', ParseIntPipe) id: number): Promise<Post> {
     return await this.postService.get(id);
   }
 
+  @Delete(':id')
   @ApiException({ statusCode: HttpStatus.FORBIDDEN })
   @ApiOkResponse({ description: 'post deleted' })
   @ApiBearerAuth()
-  @Delete(':id')
   @UseGuards(JwtAuthGuard, PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Post))
   public async delete(@Param('id', ParseIntPipe) id: number, @CurrentAbility() ability: AppAbility): Promise<void> {
     return await this.postService.delete(id, ability);
   }
 
+  @RestPost()
   @ApiException({ statusCode: HttpStatus.FORBIDDEN })
   @ApiCreatedResponse({ type: Post })
   @ApiBearerAuth()
-  @RestPost()
   @UseGuards(JwtAuthGuard, PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Create, Post))
   public async create(@Body() createPostDto: CreateUpdatePostDto, @CurrentUser() user: User): Promise<Post> {
     return await this.postService.create(createPostDto, user);
   }
 
+  @Put(':id')
   @ApiException({ statusCode: HttpStatus.FORBIDDEN })
   @ApiOkResponse({ type: Post })
   @ApiBearerAuth()
-  @Put(':id')
   @UseGuards(JwtAuthGuard, PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Post))
   public async update(
