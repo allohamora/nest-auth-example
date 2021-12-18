@@ -6,6 +6,7 @@ import { CryptoService } from 'src/crypto/crypto.service';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
+import { AccessRefreshTokens } from './dto/access-refresh-tokens.dto';
 import { JwtPayloadDto } from './dto/jwt-payload.dto';
 import { RefreshDto } from './dto/refresh.dto';
 import { RegisterLoginDto } from './dto/register-login.dto';
@@ -98,7 +99,7 @@ export class AuthService {
   }
 
   public async register({ login, password }: RegisterLoginDto) {
-    await this.userService.create({ login, password });
+    return await this.userService.create({ login, password });
   }
 
   public async login(user: User, userAgent: string, ip: string) {
