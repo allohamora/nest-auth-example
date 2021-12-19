@@ -1,5 +1,5 @@
 # Nest Auth Example
-[nest](https://github.com/nestjs/nest) authentication and authorization.
+[nest](https://github.com/nestjs/nest) authentication and authorization example.
 
 ## Used technologies
 * [nest](https://github.com/nestjs/nest)
