@@ -2,7 +2,7 @@
   "name": "nest-auth-example",
   "version": "1.0.0",
   "description": "nest auth example",
-  "author": "https://github.com/Allohamora",
+  "author": "https://github.com/allohamora",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -110,11 +110,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Allohamora/nest-auth-example.git"
+    "url": "git+https://github.com/allohamora/nest-auth-example.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/Allohamora/nest-auth-example/issues"
+    "url": "https://github.com/allohamora/nest-auth-example/issues"
   },
-  "homepage": "https://github.com/Allohamora/nest-auth-example#readme"
+  "homepage": "https://github.com/allohamora/nest-auth-example#readme"
 }
