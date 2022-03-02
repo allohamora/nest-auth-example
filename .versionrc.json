@@ -33,6 +33,6 @@
       "hidden": true
     }
   ],
-  "commitUrlFormat": "https://github.com/Allohamora/nest-auth-example/commit/{{hash}}",
-  "compareUrlFormat": "https://github.com/Allohamora/nest-auth-example/compare/{{previousTag}}...{{currentTag}}"
+  "commitUrlFormat": "https://github.com/allohamora/nest-auth-example/commit/{{hash}}",
+  "compareUrlFormat": "https://github.com/allohamora/nest-auth-example/compare/{{previousTag}}...{{currentTag}}"
 }
