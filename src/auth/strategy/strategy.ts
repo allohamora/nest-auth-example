@@ -4,8 +4,7 @@ import { StrategyRegistry } from '../strategy.registry';
 
 export abstract class Strategy {
   constructor(name: string) {
-    const registry = new StrategyRegistry();
-    registry.setStrategy(name, this);
+    new StrategyRegistry().setStrategy(name, this);
   }
 
   public abstract validate(context: ExecutionContext): User | Promise<User>;

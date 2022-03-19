@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.6](https://github.com/allohamora/nest-auth-example/compare/v1.0.5...v1.0.6) (2022-03-19)
+
+### Features
+
+- add proxy based Singleton decorator ([f3e61f1](https://github.com/allohamora/nest-auth-example/commit/f3e61f1d427ec45d37febd9837f3dca8e562353b))
+
 ### [1.0.5](https://github.com/allohamora/nest-auth-example/compare/v1.0.4...v1.0.5) (2022-03-19)
 
 ### Features
