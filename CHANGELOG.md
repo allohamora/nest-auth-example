@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/allohamora/nest-auth-example/compare/v1.0.4...v1.0.5) (2022-03-19)
+
+### Features
+
+- add space to README ([b7d2fd8](https://github.com/allohamora/nest-auth-example/commit/b7d2fd8b8b4bed2d997803f9603d13aab1b63777))
+
 ### [1.0.4](https://github.com/allohamora/nest-auth-example/compare/v1.0.3...v1.0.4) (2022-03-19)
 
 ### Bug Fixes
