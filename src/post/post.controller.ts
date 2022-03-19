@@ -10,9 +10,9 @@ import {
   ParseIntPipe,
   HttpStatus,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Auth } from 'src/auth/auth.decorator';
 import { CurrentUser } from 'src/auth/current-user.decorator';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Action } from 'src/casl/action.enum';
 import { AppAbility } from 'src/casl/casl-ability.factory';
 import { CheckPolicies } from 'src/casl/check-policies.decorator';
@@ -37,31 +37,27 @@ export class PostController {
   }
 
   @Delete(':id')
-  @ApiException({ statusCode: HttpStatus.FORBIDDEN })
-  @ApiOkResponse({ description: 'post deleted' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, PoliciesGuard)
+  @UseGuards(PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Post))
+  @Auth()
   public async delete(@Param('id', ParseIntPipe) id: number, @CurrentAbility() ability: AppAbility): Promise<void> {
     return await this.postService.delete(id, ability);
   }
 
   @RestPost()
-  @ApiException({ statusCode: HttpStatus.FORBIDDEN })
   @ApiCreatedResponse({ type: Post })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, PoliciesGuard)
+  @UseGuards(PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Create, Post))
+  @Auth()
   public async create(@Body() createPostDto: CreateUpdatePostDto, @CurrentUser() user: User): Promise<Post> {
     return await this.postService.create(createPostDto, user);
   }
 
   @Put(':id')
-  @ApiException({ statusCode: HttpStatus.FORBIDDEN })
   @ApiOkResponse({ type: Post })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, PoliciesGuard)
+  @UseGuards(PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Post))
+  @Auth()
   public async update(
     @Body() updatePostDto: CreateUpdatePostDto,
     @Param('id', ParseIntPipe) id: number,
