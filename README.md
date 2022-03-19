@@ -1,17 +1,20 @@
 # Nest Auth Example
-[nest](https://github.com/nestjs/nest) authentication and authorization example. 
+
+[nest](https://github.com/nestjs/nest) authentication(without [passport](https://github.com/jaredhanson/passport)) and authorization example.
 
 ## Used technologies
-* [nest](https://github.com/nestjs/nest)
-* [typeorm](https://github.com/typeorm/typeorm)
-* [swagger](https://swagger.io) as [@nestjs/swagger](https://docs.nestjs.com/openapi/introduction)
-* [passport](https://github.com/jaredhanson/passport)
-* [casl](https://github.com/stalniy/casl)
+
+- [nest](https://github.com/nestjs/nest)
+- [typeorm](https://github.com/typeorm/typeorm)
+- [swagger](https://swagger.io) as [@nestjs/swagger](https://docs.nestjs.com/openapi/introduction)
+- [passport](https://github.com/jaredhanson/passport)
+- [casl](https://github.com/stalniy/casl)
 
 ## Docs
-* run the app
-* open /api
-* enjoy swagger docs
+
+- run the app
+- open /api
+- enjoy swagger docs
 
 ## Installation
 
@@ -39,5 +42,6 @@ $ npm run test:cov
 ```
 
 ## Other variants
+
 - [auth0](https://github.com/Allohamora/experiments/tree/master/topics/auth0)
-- [without passport](https://github.com/Allohamora/nest-auth-example/tree/guard)
+- [passport](https://github.com/Allohamora/nest-auth-example/tree/passport)
