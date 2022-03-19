@@ -1,6 +1,6 @@
 # Nest Auth Example
 
-[nest](https://github.com/nestjs/nest) authentication(without [passport](https://github.com/jaredhanson/passport)) and authorization example.
+[nest](https://github.com/nestjs/nest) authentication (without [passport](https://github.com/jaredhanson/passport)) and authorization example.
 
 ## Used technologies
 
