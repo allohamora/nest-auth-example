@@ -7,7 +7,6 @@
 - [nest](https://github.com/nestjs/nest)
 - [typeorm](https://github.com/typeorm/typeorm)
 - [swagger](https://swagger.io) as [@nestjs/swagger](https://docs.nestjs.com/openapi/introduction)
-- [passport](https://github.com/jaredhanson/passport)
 - [casl](https://github.com/stalniy/casl)
 
 ## Docs
