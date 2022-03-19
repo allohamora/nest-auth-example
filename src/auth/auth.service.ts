@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,7 +6,6 @@ import { CryptoService } from 'src/crypto/crypto.service';
 import { User } from 'src/user/user.entity';
 import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
-import { AccessRefreshTokens } from './dto/access-refresh-tokens.dto';
 import { JwtPayloadDto } from './dto/jwt-payload.dto';
 import { RefreshDto } from './dto/refresh.dto';
 import { RegisterLoginDto } from './dto/register-login.dto';
@@ -38,6 +37,14 @@ export class AuthService {
 
     this.JWT_REFRESH_EXP = configService.get('JWT_REFRESH_EXP');
     this.JWT_REFRESH_SECRET = configService.get('JWT_REFRESH_SECRET');
+  }
+
+  public async validateAccessToken(accessToken: string) {
+    try {
+      return await this.jwtService.verifyAsync<JwtPayloadDto>(accessToken, { secret: this.JWT_ACCESS_SECRET });
+    } catch (error) {
+      throw new UnauthorizedException();
+    }
   }
 
   public async validateUser(login: string, password: string) {
