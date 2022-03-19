@@ -1,6 +1,6 @@
 {
   "name": "nest-auth-example",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "nest auth example",
   "author": "https://github.com/allohamora",
   "private": true,
@@ -32,7 +32,6 @@
     "@nestjs/config": "^1.1.5",
     "@nestjs/core": "^8.0.0",
     "@nestjs/jwt": "^8.0.0",
-    "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.1.5",
     "@nestjs/typeorm": "^8.0.2",
