@@ -21,9 +21,7 @@ export class PostService {
   }
 
   public async get(id: number) {
-    const post = await this.postRepository.findOneOrFail(id);
-
-    return post;
+    return await this.postRepository.findOneOrFail(id);
   }
 
   public async update({ name, body }: CreateUpdatePostDto, id: number, ability: AppAbility) {
@@ -36,9 +34,7 @@ export class PostService {
     post.name = name;
     post.body = body;
 
-    await this.postRepository.save(post);
-
-    return post;
+    return await this.postRepository.save(post);
   }
 
   public async delete(id: number, ability: AppAbility) {
