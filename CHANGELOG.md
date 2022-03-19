@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.3](https://github.com/allohamora/nest-auth-example/compare/v1.0.2...v1.0.3) (2022-03-19)
+
+### Features
+
+- remove passport ([b51e018](https://github.com/allohamora/nest-auth-example/commit/b51e018a01bbd4fc00d118dfafe613a4ad62518e))
+
 ### [1.0.2](https://github.com/allohamora/nest-auth-example/compare/v1.0.1...v1.0.2) (2022-03-02)
 
 ### Bug Fixes
