@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.7](https://github.com/allohamora/nest-auth-example/compare/v1.0.6...v1.0.7) (2022-12-04)
+
+### Features
+
+- migrate to REST ([9ad9355](https://github.com/allohamora/nest-auth-example/commit/9ad93555ea90fb7d25917a01c5ac2333620c2fe8))
+
 ### [1.0.6](https://github.com/allohamora/nest-auth-example/compare/v1.0.5...v1.0.6) (2022-03-19)
 
 ### Features
