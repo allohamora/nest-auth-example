@@ -20,7 +20,7 @@ export class AuthController {
   @ApiOkResponse({ type: AccessRefreshTokens })
   @ApiBody({ type: RegisterLoginDto })
   @HttpCode(200)
-  public async login(
+  public login(
     @CurrentUser() user: User,
     @UserAgent() userAgent: string,
     @Ip() ip: string,
@@ -31,26 +31,26 @@ export class AuthController {
   @Post('register')
   @ApiException({ statusCode: HttpStatus.BAD_REQUEST })
   @ApiCreatedResponse({ type: User })
-  public async register(@Body() registerDto: RegisterLoginDto): Promise<User> {
-    return await this.authService.register(registerDto);
+  public register(@Body() registerDto: RegisterLoginDto): Promise<User> {
+    return this.authService.register(registerDto);
   }
 
   @Post('refresh')
   @ApiException({ statusCode: HttpStatus.BAD_REQUEST })
   @ApiOkResponse({ type: AccessRefreshTokens })
   @HttpCode(200)
-  public async refresh(
+  public refresh(
     @Body() refreshDto: RefreshDto,
     @UserAgent() userAgent: string,
     @Ip() ip: string,
   ): Promise<AccessRefreshTokens> {
-    return await this.authService.refresh(refreshDto, userAgent, ip);
+    return this.authService.refresh(refreshDto, userAgent, ip);
   }
 
   @Auth()
-  @Get('test')
+  @Get('me')
   @ApiOkResponse({ type: User })
-  public async test(@CurrentUser() user: User): Promise<User> {
+  public async me(@CurrentUser() user: User): Promise<User> {
     return user;
   }
 }
