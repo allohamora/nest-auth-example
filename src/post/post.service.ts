@@ -14,16 +14,18 @@ export class PostService {
     private postRepository: Repository<Post>,
   ) {}
 
-  public async create({ name, body }: CreateUpdatePostDto, author: User) {
+  public create({ name, body }: CreateUpdatePostDto, author: User) {
     const post = this.postRepository.create({ name, body, author });
 
-    return await this.postRepository.save(post);
+    return this.postRepository.save(post);
   }
 
-  public async get(id: number) {
-    const post = await this.postRepository.findOneOrFail(id);
+  public getOne(id: number) {
+    return this.postRepository.findOneOrFail(id);
+  }
 
-    return post;
+  public getMany() {
+    return this.postRepository.find();
   }
 
   public async update({ name, body }: CreateUpdatePostDto, id: number, ability: AppAbility) {
@@ -36,9 +38,7 @@ export class PostService {
     post.name = name;
     post.body = body;
 
-    await this.postRepository.save(post);
-
-    return post;
+    return this.postRepository.save(post);
   }
 
   public async delete(id: number, ability: AppAbility) {

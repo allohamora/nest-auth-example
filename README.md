@@ -13,7 +13,7 @@
 ## Docs
 
 - run the app
-- open /api
+- open /swagger
 - enjoy swagger docs
 
 ## Installation

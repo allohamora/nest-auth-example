@@ -1,7 +1,7 @@
 import {
   Controller,
   UseGuards,
-  Post as RestPost,
+  Post as HttpPost,
   Put,
   Body,
   Param,
@@ -24,16 +24,22 @@ import { CreateUpdatePostDto } from './dto/create-update-post.dto';
 import { Post } from './post.entity';
 import { PostService } from './post.service';
 
-@ApiTags('post')
-@Controller('post')
+@ApiTags('Post')
+@Controller('posts')
 export class PostController {
   constructor(private postService: PostService) {}
+
+  @Get()
+  @ApiOkResponse({ type: Post, isArray: true })
+  public getMany(): Promise<Post[]> {
+    return this.postService.getMany();
+  }
 
   @Get(':id')
   @ApiException({ statusCode: HttpStatus.NOT_FOUND })
   @ApiOkResponse({ type: Post })
-  public async get(@Param('id', ParseIntPipe) id: number): Promise<Post> {
-    return await this.postService.get(id);
+  public getOne(@Param('id', ParseIntPipe) id: number): Promise<Post> {
+    return this.postService.getOne(id);
   }
 
   @Delete(':id')
@@ -43,17 +49,16 @@ export class PostController {
   @UseGuards(JwtAuthGuard, PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Delete, Post))
   public async delete(@Param('id', ParseIntPipe) id: number, @CurrentAbility() ability: AppAbility): Promise<void> {
-    return await this.postService.delete(id, ability);
+    return this.postService.delete(id, ability);
   }
 
-  @RestPost()
-  @ApiException({ statusCode: HttpStatus.FORBIDDEN })
+  @HttpPost()
   @ApiCreatedResponse({ type: Post })
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Create, Post))
   public async create(@Body() createPostDto: CreateUpdatePostDto, @CurrentUser() user: User): Promise<Post> {
-    return await this.postService.create(createPostDto, user);
+    return this.postService.create(createPostDto, user);
   }
 
   @Put(':id')
@@ -62,11 +67,11 @@ export class PostController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, PoliciesGuard)
   @CheckPolicies((ability: AppAbility) => ability.can(Action.Update, Post))
-  public async update(
+  public update(
     @Body() updatePostDto: CreateUpdatePostDto,
     @Param('id', ParseIntPipe) id: number,
     @CurrentAbility() ability: AppAbility,
   ): Promise<Post> {
-    return await this.postService.update(updatePostDto, id, ability);
+    return this.postService.update(updatePostDto, id, ability);
   }
 }
