@@ -97,12 +97,12 @@ export class AuthService {
 
     const { id } = this.jwtService.decode(refreshToken) as JwtPayloadDto;
     const user = await this.userService.findOne(id);
-    const refresAndAccessTokens = await this.createAccessAndRefreshTokens(user);
+    const refreshAndAccessTokens = await this.createAccessAndRefreshTokens(user);
 
-    session.refreshToken = refresAndAccessTokens.refreshToken;
+    session.refreshToken = refreshAndAccessTokens.refreshToken;
     await this.sessionRepository.save(session);
 
-    return refresAndAccessTokens;
+    return refreshAndAccessTokens;
   }
 
   public async register({ login, password }: RegisterLoginDto) {
